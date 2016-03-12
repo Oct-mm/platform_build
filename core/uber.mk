@@ -104,10 +104,6 @@ STRICT_GCC_LEVEL := \
 STRICT_CLANG_LEVEL := \
 	-Wstrict-aliasing=2
 
-ifeq (true,$(STRICT_ALIASING))
-OPT2 := (strict)
-endif
-
 ###############
 # Krait Tunings
 ###############
@@ -123,9 +119,6 @@ KRAIT_FLAGS := \
 	-mcpu=cortex-a15 \
 	-mtune=cortex-a15
 	
-ifeq (true,$(KRAIT_TUNINGS))
-OPT4 := (krait)
-endif
 
 #############
 # GCC Tunings
@@ -155,23 +148,6 @@ GCC_ONLY := \
 ##########
 # GRAPHITE
 ##########
-ifeq ($(strip $(GRAPHITE_OPTS)),true)
-OPT1 := (graphite)
-GRAPHITE_FLAGS := \
-  -fgraphite \
-  -fgraphite-identity \
-  -floop-flatten \
-  -floop-parallelize-all \
-  -ftree-loop-linear \
-  -floop-interchange \
-  -floop-strip-mine \
-  -floop-block
-ifeq ($(strip $(Uber)),true)
-  GRAPHITE_FLAGS += \
-    -Wno-error=maybe-uninitialized
-endif
-endif
-
 LOCAL_DISABLE_GRAPHITE := \
 	libunwind \
 	libFFTEm \
@@ -202,17 +178,3 @@ GRAPHITE_FLAGS := \
 	-floop-interchange \
 	-floop-strip-mine \
 	-floop-block
-#####################################
-ifeq (true,$(Uber_O3))
-OPT3 := (O3)
-endif
-
-ifeq (true,$(STRICT_ALIASING))
-OPT2 := (strict)
-endif
-
-ifeq (true,$(KRAIT_TUNINGS))
-OPT4 := (krait)
-endif
-
-GCC_OPTIMIZATION_LEVELS := $(OPT1)$(OPT2)$(OPT3)$(OPT4)
