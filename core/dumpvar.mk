@@ -78,15 +78,54 @@ $(info   TARGET_CPU_VARIANT=$(TARGET_CPU_VARIANT))
 $(info   TARGET_2ND_ARCH=$(TARGET_2ND_ARCH))
 $(info   TARGET_2ND_ARCH_VARIANT=$(TARGET_2ND_ARCH_VARIANT))
 $(info   TARGET_2ND_CPU_VARIANT=$(TARGET_2ND_CPU_VARIANT))
+ifdef TARGET_GCC_VERSION
+$(info   TARGET_GCC_VERSION=$(TARGET_GCC_VERSION))
+else
+$(info   TARGET_GCC_VERSION=4.9-linaro)
+endif
+$(info   TARGET_NDK_GCC_VERSION=$(TARGET_NDK_GCC_VERSION))
+ifdef TARGET_TC_KERNEL
+$(info   TARGET_TC_KERNEL=$(TARGET_TC_KERNEL))
+else
+$(info   TARGET_TC_KERNEL=4.9-linaro)
+endif
+ifdef GCC_OPTIMIZATION_LEVELS
+$(info   GCC_OPTIMIZATION_LEVELS=$(GCC_OPTIMIZATION_LEVELS))
+else
+$(info   GCC_OPTIMIZATION_LEVELS empty!)
+endif
+$(info   BUILD_ID=$(BUILD_ID))
 $(info   HOST_ARCH=$(HOST_ARCH))
 $(info   HOST_OS=$(HOST_OS))
 $(info   HOST_OS_EXTRA=$(HOST_OS_EXTRA))
 $(info   HOST_BUILD_TYPE=$(HOST_BUILD_TYPE))
-$(info   BUILD_ID=$(BUILD_ID))
+$(info   HOST_CC=$(HOST_CC))
+$(info   HOST_OUT_EXECUTABLES=$(HOST_OUT_EXECUTABLES))
 $(info   OUT_DIR=$(OUT_DIR))
-ifeq ($(CYNGN_TARGET),true)
-$(info   CYNGN_TARGET=$(CYNGN_TARGET))
-$(info   CYNGN_FEATURES=$(CYNGN_FEATURES))
+ifdef Uber_O3
+$(info   Uber_O3=$(Uber_O3))
+else
+$(info   Uber_O3=false)
+endif
+ifeq (true,$(GRAPHITE_OPTS))
+$(info   GRAPHITE_OPTS=$(GRAPHITE_OPTS))
+else
+$(info   GRAPHITE_OPTS=false)
+endif
+ifdef STRICT_ALIASING
+$(info   STRICT_ALIASING=$(STRICT_ALIASING))
+else
+$(info   Uber_STRICT=false)
+endif
+ifdef KRAIT_TUNINGS
+$(info   KRAIT_TUNINGS=$(KRAIT_TUNINGS))
+else
+$(info   KRAIT_TUNINGS=false)
+endif
+ifdef Uber_PIPE
+$(info   Uber_PIPE=$(Uber_PIPE))
+else
+$(info   Uber_PIPE=false)
 endif
 $(info ============================================)
 endif
