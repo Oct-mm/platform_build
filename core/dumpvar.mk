@@ -115,7 +115,7 @@ endif
 ifdef STRICT_ALIASING
 $(info   STRICT_ALIASING=$(STRICT_ALIASING))
 else
-$(info   Uber_STRICT=false)
+$(info   STRICT_ALIASING=false)
 endif
 ifdef KRAIT_TUNINGS
 $(info   KRAIT_TUNINGS=$(KRAIT_TUNINGS))
